@@ -215,6 +215,7 @@ section {
       -ms-flex: 1 0 auto;
           flex: 1 0 auto;
   height: 100vh;
+  min-width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -224,7 +225,6 @@ section {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 0 20rem 0 0;
 }
 
 .text-content {

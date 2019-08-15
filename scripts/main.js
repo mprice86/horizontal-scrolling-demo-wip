@@ -118,7 +118,6 @@ var animations = (function () {
   // Get elements that haven't yet been animated
   var animationEls = document.querySelectorAll('.js-animate:not(.shown)');
 
-
   function initAnimations(movingTarget, horizonalScroll) {
     passiveIfSupported = device._passiveSupported();
     _translZone = movingTarget;
@@ -130,20 +129,35 @@ var animations = (function () {
       runCheckVertical();
       _translZone.addEventListener('scroll', runCheckVertical, passiveIfSupported);
     }
+  }
+
+  function runCheckHorizontal() {
+    for (var i = 0; i < animationEls.length; i++) {
+      checkChildrenForStagger(animationEls[i]);
+      checkForTransitionHorizontal(animationEls[i]);
+    }
 
     // Get elements again so we're not doing unnecessary itterations
     animationEls = document.querySelectorAll('.js-animate:not(.shown)');
   }
 
-  function runCheckHorizontal() {
-    for (var i = 0; i < animationEls.length; i++) {
-      checkForTransitionHorizontal(animationEls[i]);
-    }
-  }
-
   function runCheckVertical() {
     for (var i = 0; i < animationEls.length; i++) {
+      checkChildrenForStagger(animationEls[i]);
       checkForTransitionVertical(animationEls[i]);
+    }
+
+    // Get elements again so we're not doing unnecessary itterations
+    animationEls = document.querySelectorAll('.js-animate:not(.shown)');
+  }
+
+  function checkChildrenForStagger(el) {
+    if (el.classList.contains('stagger-children')) {
+      var childEls = el.querySelectorAll('.js-animate');
+
+      for (var c = 0; c < childEls.length; c++) {
+        childEls[c].setAttribute('style', 'transition-delay: ' + 500 * c + 'ms;');
+      }
     }
   }
 
@@ -182,7 +196,6 @@ var animations = (function () {
     _reset: resetAnimations,
     _check: checkForTransitionVertical
   }
-
 })();
 
 
@@ -204,8 +217,6 @@ var animations = (function () {
 
 
 // Trigger set up of ... everything
-// setup animations
-
 
 // setup scroll conversion or touch controls
 if (device._isTouch() === false) {
@@ -213,5 +224,6 @@ if (device._isTouch() === false) {
   animations._init(document.querySelector('.wrapper'), true);
 } else {
   console.log('touch device detected');
+  
   // set up touch controls
 }
