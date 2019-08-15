@@ -189,6 +189,66 @@ sub {
 	line-height: normal;
 }
 
+
+.animate {
+	transition: ease opacity, ease transform;
+  
+  &.very-fast {
+    transition-duration: $speed-very-fast;
+  } 
+  
+	&.fast {
+		transition-duration: $speed-fast;
+	}
+  
+  &.normal {
+    transition-duration: $speed-normal;
+  }
+
+	&.slow {
+		transition-duration: $speed-slow;
+	}
+  
+  &.very-slow {
+		transition-duration: $speed-very-slow;
+	}
+  
+  &.super-slow {
+    transition-duration: 1s;
+  }
+
+	&.opacity {
+		opacity: 0;
+	}
+
+	&.slide-up {
+		transform: translateY(5rem);
+	}
+
+	&.slide-right {
+		transform: translateX(-5rem);
+	}
+
+	&.slide-down {
+		transform: translateY(-5rem);
+	}
+
+	&.slide-left {
+		transform: translateX(5rem);
+	}
+
+	&.shown {
+		transform: translate(0);
+		opacity: 1;
+	}
+
+	@media (max-width: $screen-mobile) {
+		transition: none;
+	}
+}
+
+
+
 main {
 	display: block;
 	width: 100%;

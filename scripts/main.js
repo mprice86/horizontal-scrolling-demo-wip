@@ -10,28 +10,51 @@ anime({
   loop: true,
 });
 
+/**
+ * Sets up a custom, cross-browser compatible Event which can be manually triggered
+ * @param {String} eventName Name of the custom event
+ */
+var customEvents = (function () {
+  function createNewEvent(eventName) {
+    var event;
+    if (typeof (Event) === 'function') {
+      event = new Event(eventName);
+    } else {
+      event = document.createEvent('Event');
+      event.initEvent(eventName, true, true);
+    }
+    return event;
+  }
+
+  return {
+    create: createNewEvent
+  };
+})();
+
 // Device functionality detection
-var device = (function() {
+var device = (function () {
   function isTouch() {
     var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
     var mq = function (query) {
       return window.matchMedia(query).matches;
     }
-  
+
     if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
       return true;
     }
-  
+
     var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
     return mq(query);
   }
 
   function passiveSupported() {
     try {
-      window.addEventListener('test', null, Object.defineProperty({}, 'passive', { get: function() { 
-        return true; 
-      }}));
-    } catch(err) {}
+      window.addEventListener('test', null, Object.defineProperty({}, 'passive', {
+        get: function () {
+          return true;
+        }
+      }));
+    } catch (err) {}
   }
 
   return {
@@ -77,6 +100,9 @@ var scrollConversion = (function () {
       // Update x-val, translate content horizonally
       _translZone.setAttribute('x-val', xVal);
       _translZone.setAttribute('style', 'transform: translateX(' + xVal + 'px);');
+
+      var translateEvent = customEvents.create('translate');
+      _translZone.dispatchEvent(translateEvent);
     }
   }
 
@@ -85,29 +111,53 @@ var scrollConversion = (function () {
   }
 })();
 
-var animations = (function() {
+var animations = (function () {
   var passiveIfSupported = false;
-  passiveIfSupported = device._passiveSupported();
+  var _translZone;
 
   // Get elements that haven't yet been animated
   var animationEls = document.querySelectorAll('.js-animate:not(.shown)');
 
-  if (animationEls.length) {
-    initAnimations();
-    window.addEventListener('scroll', initAnimations, passiveIfSupported);
-  }
 
-  function initAnimations() {
+  function initAnimations(movingTarget, horizonalScroll) {
+    passiveIfSupported = device._passiveSupported();
+    _translZone = movingTarget;
+
+    if (animationEls.length && horizonalScroll) {
+      runCheckHorizontal();
+      _translZone.addEventListener('translate', runCheckHorizontal, passiveIfSupported);
+    } else if (animationEls.length && !horizonalScroll) {
+      runCheckVertical();
+      _translZone.addEventListener('scroll', runCheckVertical, passiveIfSupported);
+    }
+
     // Get elements again so we're not doing unnecessary itterations
     animationEls = document.querySelectorAll('.js-animate:not(.shown)');
+  }
 
+  function runCheckHorizontal() {
     for (var i = 0; i < animationEls.length; i++) {
-      checkForTransition(animationEls[i]);
+      checkForTransitionHorizontal(animationEls[i]);
+    }
+  }
+
+  function runCheckVertical() {
+    for (var i = 0; i < animationEls.length; i++) {
+      checkForTransitionVertical(animationEls[i]);
     }
   }
 
   // If element is within the viewport add 'shown' class to start animation
-  function checkForTransition(el) {
+  function checkForTransitionHorizontal(el) {
+    if (window.innerWidth / 2 >= el.getBoundingClientRect().left) {
+      el.classList.add('shown');
+    } else {
+      el.classList.remove('shown');
+    }
+  }
+
+  // If element is within the viewport add 'shown' class to start animation
+  function checkForTransitionVertical(el) {
     if (window.innerHeight >= el.getBoundingClientRect().top) {
       el.classList.add('shown');
     } else {
@@ -122,14 +172,15 @@ var animations = (function() {
       animationEls[i].classList.remove('shown');
     }
 
-    setTimeout(function() {
-      window.scrollTo(0,0);
+    setTimeout(function () {
+      window.scrollTo(0, 0);
     }, 1000);
   }
-  
+
   return {
+    _init: initAnimations,
     _reset: resetAnimations,
-    _check: checkForTransition
+    _check: checkForTransitionVertical
   }
 
 })();
@@ -159,6 +210,7 @@ var animations = (function() {
 // setup scroll conversion or touch controls
 if (device._isTouch() === false) {
   scrollConversion.init(document.body, document.querySelector('.wrapper'));
+  animations._init(document.querySelector('.wrapper'), true);
 } else {
   console.log('touch device detected');
   // set up touch controls
