@@ -1,14 +1,14 @@
-import anime from './libs/anime.es.js';
+// import anime from './libs/anime.es.js';
 
-anime({
-  targets: '.pow-stage',
-  translateY: ['0', '-100', '0'],
-  delay: function (el, index) {
-    return index * 100;
-  },
-  ease: 'ease',
-  loop: true,
-});
+// anime({
+//   targets: '.pow-stage',
+//   translateY: ['0', '-100', '0'],
+//   delay: function (el, index) {
+//     return index * 100;
+//   },
+//   ease: 'ease',
+//   loop: true,
+// });
 
 /**
  * Sets up a custom, cross-browser compatible Event which can be manually triggered
@@ -31,7 +31,9 @@ var customEvents = (function () {
   };
 })();
 
-// Device functionality detection
+/**
+ * Device functionality detection
+ */
 var device = (function () {
   function isTouch() {
     var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
@@ -47,6 +49,10 @@ var device = (function () {
     return mq(query);
   }
 
+  function isMobile() {
+    return window.matchMedia('(max-width: 1100px)').matches;
+  }
+
   function passiveSupported() {
     try {
       window.addEventListener('test', null, Object.defineProperty({}, 'passive', {
@@ -59,13 +65,16 @@ var device = (function () {
 
   return {
     _isTouch: isTouch,
+    _isMobile: isMobile,
     _passiveSupported: passiveSupported,
   }
 })();
 
-// Set up horizontal scroll 
+/**
+ * Set up horizontal scroll
+ */
 var scrollConversion = (function () {
-  var _scrollZone, _translZone;
+  var _scrollZone, _translZone, xVal;
 
   function init(scrollZone, translZone) {
     _scrollZone = scrollZone;
@@ -91,7 +100,7 @@ var scrollConversion = (function () {
       }
 
       // Get x-val attribute if set
-      var xVal = (_translZone.getAttribute('x-val') * 1 + delta);
+      xVal = (_translZone.getAttribute('x-val') * 1 + delta);
 
       // Don't allow scrolling past the start of end of the content
       // TODO: add screen edge flash animation here
@@ -106,8 +115,17 @@ var scrollConversion = (function () {
     }
   }
 
+  function disable() {
+    _scrollZone.removeEventListener('wheel', convertScrollToTranslate, false);
+    _translZone.setAttribute('style', 'transform: translateX(0);');
+    window.scrollTo(0, 0);
+    xVal = 0;
+    _translZone.setAttribute('x-val', xVal);
+  }
+
   return {
-    init: init,
+    _init: init,
+    _disable: disable,
   }
 })();
 
@@ -185,10 +203,6 @@ var animations = (function () {
     for (var i = 0; i < animationEls.length; i++) {
       animationEls[i].classList.remove('shown');
     }
-
-    setTimeout(function () {
-      window.scrollTo(0, 0);
-    }, 1000);
   }
 
   return {
@@ -218,12 +232,35 @@ var animations = (function () {
 
 // Trigger set up of ... everything
 
-// setup scroll conversion or touch controls
-if (device._isTouch() === false) {
-  scrollConversion.init(document.body, document.querySelector('.wrapper'));
-  animations._init(document.querySelector('.wrapper'), true);
-} else {
-  console.log('touch device detected');
-  
-  // set up touch controls
-}
+var setup = (function () {
+  init();
+
+  function init() {
+    // setup scroll conversion or touch controls
+    if (device._isTouch() === false && device._isMobile() === false) {
+      scrollConversion._init(document.body, document.querySelector('.wrapper'));
+      animations._init(document.querySelector('.wrapper'), true);
+    } else if (device._isTouch() === true && device._isMobile() === false) {
+      console.log('non-mobile touch device detected');
+    } else {
+      console.log('mobile device detected');
+      animations._init(document.body, false);
+    }
+
+    window.addEventListener('resize', onResize, false);
+  }
+
+  function onResize() {
+    if (device._isMobile()) {
+      console.log('mobile device detected');
+      animations._reset();
+      animations._init(document.body, false);
+      window.scroll(0, 0);
+      scrollConversion._disable();
+    } else {
+      scrollConversion._init(document.body, document.querySelector('.wrapper'));
+      animations._reset();
+      animations._init(document.querySelector('.wrapper'), true);
+    }
+  }
+})();
