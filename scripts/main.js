@@ -181,7 +181,7 @@ var animations = (function () {
 
   // If element is within the viewport add 'shown' class to start animation
   function checkForTransitionHorizontal(el) {
-    if (window.innerWidth / 2 >= el.getBoundingClientRect().left) {
+    if (window.innerWidth / 1.5 >= el.getBoundingClientRect().left) {
       el.classList.add('shown');
     } else {
       el.classList.remove('shown');
