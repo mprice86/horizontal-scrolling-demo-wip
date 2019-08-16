@@ -305,19 +305,19 @@ section {
 }
 
 .text-massive {
-  font-size: 7vw;
+  font-size: 8vw;
   font-weight: 600;
   line-height: .9em;
 }
 
 .text-large {
-  font-size: 5vw;
+  font-size: 6vw;
   font-weight: 600;
   line-height: .9em;
 }
 
 .text-medium {
-  font-size: 3vw;
+  font-size: 4vw;
   font-weight: 600;
   line-height: .9em;
 }
@@ -326,6 +326,18 @@ section {
   font-size: 2vw;
   font-weight: 600;
   line-height: .9em;
+}
+
+.margin-large {
+  margin: 5vw 0;
+}
+
+.margin-medium {
+  margin: 4vw 0;
+}
+
+.margin-small {
+  margin: 2vw 0;
 }
 
 .background {
