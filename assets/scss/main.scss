@@ -72,7 +72,7 @@ body {
 	font-weight: $regular;
 	line-height: $nbs-line-height;
 	color: $nbs-text-primary;
-	overflow: hidden;
+
 
 	@media (max-width: $screen-desktop-small) {
 		overflow: auto;
@@ -256,11 +256,13 @@ sub {
 main {
 	display: block;
 	width: 100%;
+	height: 100vh;
 }
 
 .wrapper {
 	display: inline-flex;
 	transition: transform .1s ease;
+
 
 	@media (max-width: $screen-desktop-small) {
 		flex-flow: column;
@@ -448,3 +450,21 @@ section {
 // 		margin: 0 .5rem;
 // 	}
 // }
+
+.scroll {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+
+.one {
+	z-index: 100;
+}
+
+.two {
+	z-index: 50;
+
+	section {
+		min-width: 80vw
+	}
+}

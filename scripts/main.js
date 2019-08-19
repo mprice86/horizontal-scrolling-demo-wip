@@ -1,14 +1,14 @@
-// import anime from './libs/anime.es.js';
+// // import anime from './libs/anime.es.js';
 
-// anime({
-//   targets: '.pow-stage',
-//   translateY: ['0', '-100', '0'],
-//   delay: function (el, index) {
-//     return index * 100;
-//   },
-//   ease: 'ease',
-//   loop: true,
-// });
+// // anime({
+// //   targets: '.pow-stage',
+// //   translateY: ['0', '-100', '0'],
+// //   delay: function (el, index) {
+// //     return index * 100;
+// //   },
+// //   ease: 'ease',
+// //   loop: true,
+// // });
 
 /**
  * Sets up a custom, cross-browser compatible Event which can be manually triggered
@@ -67,65 +67,6 @@ var device = (function () {
     _isTouch: isTouch,
     _isMobile: isMobile,
     _passiveSupported: passiveSupported,
-  }
-})();
-
-/**
- * Set up horizontal scroll
- */
-var scrollConversion = (function () {
-  var _scrollZone, _translZone, xVal;
-
-  function init(scrollZone, translZone) {
-    _scrollZone = scrollZone;
-    _translZone = translZone;
-
-    try {
-      _scrollZone.addEventListener('wheel', convertScrollToTranslate, false);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  function convertScrollToTranslate(ev) {
-    // If scroll has moved on vertical axis
-    if (ev.deltaY != 0) {
-      var delta = ev.deltaY;
-
-      // Invert value: negative => positive || positive => negative
-      if (delta < 0) {
-        delta = delta * -1;
-      } else {
-        delta = -Math.abs(delta);
-      }
-
-      // Get x-val attribute if set
-      xVal = (_translZone.getAttribute('x-val') * 1 + delta);
-
-      // Don't allow scrolling past the start of end of the content
-      // TODO: add screen edge flash animation here
-      if (xVal > 0 || xVal * -1 >= _translZone.offsetWidth) return;
-
-      // Update x-val, translate content horizonally
-      _translZone.setAttribute('x-val', xVal);
-      _translZone.setAttribute('style', 'transform: translateX(' + xVal + 'px);');
-
-      var translateEvent = customEvents.create('translate');
-      _translZone.dispatchEvent(translateEvent);
-    }
-  }
-
-  function disable() {
-    _scrollZone.removeEventListener('wheel', convertScrollToTranslate, false);
-    _translZone.setAttribute('style', 'transform: translateX(0);');
-    window.scrollTo(0, 0);
-    xVal = 0;
-    _translZone.setAttribute('x-val', xVal);
-  }
-
-  return {
-    _init: init,
-    _disable: disable,
   }
 })();
 
@@ -208,59 +149,131 @@ var animations = (function () {
   return {
     _init: initAnimations,
     _reset: resetAnimations,
-    _check: checkForTransitionVertical
+    _checkX: runCheckHorizontal,
+    _checkY: runCheckVertical,
   }
 })();
 
+var invertscroll = (function () {
+  var defaults = {
+    width: 'auto',
+    height: 'auto',
+    onScroll: function (percent) {
+      animations._checkX();
+    }
+  };
+
+  var longest = 0,
+    totalHeight,
+    winHeight,
+    winWidth,
+    config,
+    _elements,
+    _options;
+
+  function init(elements, options) {
+    if (elements === undefined) {
+      return;
+    }
+
+    _elements = elements;
+
+    if (options) {
+      _options = options;
+      config = extend(defaults, _options);
+    } else {
+      config = defaults;
+    }
+
+    for (var i = 0; i < _elements.length; i++) {
+      var w = _elements[i].offsetWidth;
+      if (longest < w) {
+        longest = w;
+      }
+    }
+
+    if (config.width === 'auto') {
+      config.width = longest;
+    }
+
+    if (config.height === 'auto') {
+      config.height = longest;
+    }
+
+    document.body.setAttribute('style', 'height: ' + config.height + 'px;');
+  }
+
+  function calc() {
+    totalHeight = document.documentElement.scrollHeight;
+    winHeight = document.documentElement.clientHeight;
+    winWidth = document.documentElement.clientWidth;
+  }
+
+  function onScroll(e) {
+    var currY = window.scrollY;
+
+    // Make calculations
+    calc();
+
+    var diff = totalHeight - winHeight;
+    var scrollPercent = 0;
+
+    if (diff != 0) {
+      // Current percentual position
+      scrollPercent = (currY / diff).toFixed(4);
+    }
+
+    // Call the onScroll callback
+    if (typeof config.onScroll === 'function') {
+      config.onScroll.call(this, scrollPercent);
+    }
+
+    for (var i = 0; i < _elements.length; i++) {
+      var deltaW = _elements[i].offsetWidth - winWidth;
+      if (deltaW <= 0) {
+        deltaW = _elements[i].offsetWidth;
+      }
+      var pos = Math.floor(deltaW * scrollPercent) * -1;
+      _elements[i].setAttribute('style', 'left: ' + pos + 'px;');
+    }
+  }
+
+  function setlisteners() {
+    // Listen for the actual scroll event
+    window.addEventListener('scroll', onScroll, false);
+    window.addEventListener('resize', onScroll, false);
+    document.addEventListener('ready', calc, false);
+  }
 
 
+  function extend(obj1, obj2) {
+    var keys = Object.keys(obj2);
+    for (var i = 0; i < keys.length; i += 1) {
+      var val = obj2[keys[i]];
+      obj1[keys[i]] = ['string', 'number', 'array', 'boolean'].indexOf(typeof val) === -1 ? extend(obj1[keys[i]] || {}, val) : val;
+    }
+    return obj1;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Trigger set up of ... everything
-
-var setup = (function () {
+  // Init actions
   init();
+  setlisteners();
 
-  function init() {
-    // setup scroll conversion or touch controls
-    if (device._isTouch() === false && device._isMobile() === false) {
-      scrollConversion._init(document.body, document.querySelector('.wrapper'));
-      animations._init(document.querySelector('.wrapper'), true);
-    } else if (device._isTouch() === true && device._isMobile() === false) {
-      console.log('non-mobile touch device detected');
-    } else {
-      console.log('mobile device detected');
-      animations._init(document.body, false);
+  return {
+    init: init,
+    reinitialize: function () {
+      init();
+      setlisteners();
+    },
+    destroy: function () {
+      // Remove previously added inline styles
+      document.body.setAttribute('style', '');
+      window.removeEventListener('scroll', onScroll, false);
+      window.removeEventListener('resize', onScroll, false);
+      document.removeEventListener('ready', calc, false);
     }
-
-    window.addEventListener('resize', onResize, false);
-  }
-
-  function onResize() {
-    if (device._isMobile()) {
-      console.log('mobile device detected');
-      animations._reset();
-      animations._init(document.body, false);
-      window.scroll(0, 0);
-      scrollConversion._disable();
-    } else {
-      scrollConversion._init(document.body, document.querySelector('.wrapper'));
-      animations._reset();
-      animations._init(document.querySelector('.wrapper'), true);
-    }
-  }
+  };
 })();
+
+invertscroll.init(document.querySelectorAll('.scroll'));
+animations._init(document.querySelector('.wrapper'), true);

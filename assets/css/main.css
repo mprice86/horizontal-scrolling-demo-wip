@@ -11,7 +11,6 @@ body {
   font-weight: 400;
   line-height: 1.5em;
   color: #333;
-  overflow: hidden;
 }
 
 @media (max-width: 1100px) {
@@ -209,6 +208,7 @@ sub {
 main {
   display: block;
   width: 100%;
+  height: 100vh;
 }
 
 .wrapper {
@@ -349,4 +349,22 @@ section {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 1;
+}
+
+.scroll {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.one {
+  z-index: 100;
+}
+
+.two {
+  z-index: 50;
+}
+
+.two section {
+  min-width: 80vw;
 }
