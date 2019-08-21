@@ -361,95 +361,8 @@ section {
 	width: 400%;
 	height: 400%;
 	transform: translate(-50%, -50%);
-	// background-color: $nbs-brand-secondary;
-	// background: linear-gradient(90deg, rgba(0, 125, 158, 1) 10%, rgba(89, 45, 94, 1) 40%, rgba(89, 45, 94, 1) 70%, rgba(255, 255, 255, 1) 100%);
-	// background-size: 100% 100%;
-	// background-position: center;
-	// animation: background 5s ease infinite alternate-reverse;
 	z-index: 1;
-
-	// &.black {
-	// 	background-color: $nbs-text-primary;
-	// }
-
-	// &.white {
-	// 	background-color: $white;
-	// }
-
-	// &.grey {
-	// 	background-color: $nbs-utility-grey-dark;
-	// }
-
-	// &.nbs-brand-secondary {
-	// 	background-color: $nbs-brand-secondary;
-	// }
-
-	// &.nbs-cta-primary {
-	// 	background-color: $nbs-cta-primary;
-	// }
 }
-
-
-// @keyframes background {
-// 	from {
-// 		transform: translate(-50%, -50%) rotate(0deg);
-// 	}
-
-// 	to {
-// 		transform: translate(100%, -100%) rotate(45deg);
-// 	}
-// }
-
-// .pow-container {
-// 	justify-content: flex-start
-// }
-
-// .pow-stage {
-// 	display: block;
-// 	flex: 1 0 500px;
-// 	width: 500px;
-// 	height: 3rem;
-// 	margin: 0 2rem;
-// 	border: $nbs-border;
-
-// 	&:nth-child(1) {
-// 		background-color: #f99c34;
-// 	}
-
-// 	&:nth-child(2) {
-// 		background-color: #f0a2c9;
-// 	}
-
-// 	&:nth-child(3) {
-// 		background-color: #72cad3;
-// 	}
-
-// 	&:nth-child(4) {
-// 		background-color: #ffd51e;
-// 	}
-
-// 	&:nth-child(5) {
-// 		background-color: #83bf9b;
-// 	}
-
-// 	&:nth-child(6) {
-// 		background-color: #a4a8d5;
-// 	}
-
-// 	&:nth-child(7) {
-// 		background-color: #f1d49a;
-// 	}
-
-// 	&:nth-child(8) {
-// 		background-color: #5eacdc;
-// 	}
-
-// 	@media (max-width: $screen-desktop-small) {
-// 		flex: 1 0 10%;
-// 		width: auto;
-// 		margin: 0 .5rem;
-// 	}
-// }
 
 .scroll {
 	position: fixed;
@@ -465,6 +378,53 @@ section {
 	z-index: 50;
 
 	section {
-		min-width: 80vw
+		min-width: 80vw;
+	}
+}
+
+.position {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	&.top {
+		top: 5%;
+		bottom: auto;
+		transform: translate(-50%, -5%);
+
+		&.left {
+			transform: translate(-5%, -5%);
+		}
+
+		&.right {
+			transform: translate(5%, -5%);
+		}
+	}
+
+	&.right {
+		right: 5%;
+		left: auto;
+		transform: translate(5%, -50%);
+	}
+
+	&.bottom {
+		bottom: 5%;
+		top: auto;
+		transform: translate(-50%, 5%);
+
+		&.left {
+			transform: translate(-5%, 5%);
+		}
+
+		&.right {
+			transform: translate(5%, 5%);
+		}
+	}
+
+	&.left {
+		left: 5%;
+		right: auto;
+		transform: translate(-5%, -50%);
 	}
 }
