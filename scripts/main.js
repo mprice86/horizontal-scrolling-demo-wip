@@ -1,15 +1,3 @@
-// // import anime from './libs/anime.es.js';
-
-// // anime({
-// //   targets: '.pow-stage',
-// //   translateY: ['0', '-100', '0'],
-// //   delay: function (el, index) {
-// //     return index * 100;
-// //   },
-// //   ease: 'ease',
-// //   loop: true,
-// // });
-
 /**
  * Sets up a custom, cross-browser compatible Event which can be manually triggered
  * @param {String} eventName Name of the custom event
@@ -273,6 +261,41 @@ var invertscroll = (function () {
       document.removeEventListener('ready', calc, false);
     }
   };
+})();
+
+var parallaxPosition = (function () {
+  var elements = document.querySelectorAll('*[data-attach]');
+  console.log(elements);
+  var targets = [];
+
+  for (var i = 0; i < elements.length; i++) {
+    var target = document.getElementById(elements[i].getAttribute('data-attach'));
+    var position = elements[i].getAttribute('data-position');
+
+    if (target) {
+      targets.push(target);
+    }
+
+    // if position === null then set to right by default
+    if (position === undefined) { position = 'right'; }
+
+    positionElement(target, elements[i], position);
+  }
+
+  function positionElement(target, el, position) {
+    var top = target.offsetTop;
+
+    switch (position) {
+      case 'right': 
+        var right = target.getBoundingClientRect().right + 100;
+        el.setAttribute('style', 'left: ' + right + 'px; top: ' + top + 'px; transform: translate(0, -50%);'); 
+        break;
+      case 'left':
+        var left = target.offsetLeft - 100;
+        el.setAttribute('style', 'left: ' + left + 'px; top: ' + top + 'px; transform: translate(-100%, -50%);'); 
+    }
+  }
+
 })();
 
 invertscroll.init(document.querySelectorAll('.scroll'));
