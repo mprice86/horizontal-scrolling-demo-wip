@@ -277,22 +277,24 @@ var parallaxPosition = (function () {
     }
 
     // if position === null then set to right by default
-    if (position === undefined) { position = 'right'; }
+    if (position === undefined) {
+      position = 'right';
+    }
 
     positionElement(target, elements[i], position);
   }
 
   function positionElement(target, el, position) {
-    var top = target.offsetTop;
+    var top = target.offsetTop + (target.offsetHeight / 2);
 
     switch (position) {
-      case 'right': 
-        var right = target.getBoundingClientRect().right + 100;
-        el.setAttribute('style', 'left: ' + right + 'px; top: ' + top + 'px; transform: translate(0, -50%);'); 
+      case 'right':
+        var right = (target.offsetLeft + target.offsetWidth);
+        el.setAttribute('style', 'left: ' + right + 'px; top: ' + top + 'px; transform: translate(0, -50%);');
         break;
       case 'left':
-        var left = target.offsetLeft - 100;
-        el.setAttribute('style', 'left: ' + left + 'px; top: ' + top + 'px; transform: translate(-100%, -50%);'); 
+        var left = target.offsetLeft - el.offsetWidth;
+        el.setAttribute('style', 'left: ' + left + 'px; top: ' + top + 'px; transform: translate(0, -50%);');
     }
   }
 

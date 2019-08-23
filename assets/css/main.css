@@ -357,12 +357,30 @@ section {
   left: 0;
 }
 
+.image-container {
+  display: block;
+  position: relative;
+}
+
+.image-container img {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
 .one {
-  z-index: 100;
+  z-index: 10;
+  -webkit-transform: translateZ(0) scale(1);
+          transform: translateZ(0) scale(1);
 }
 
 .two {
-  z-index: 50;
+  z-index: 9;
+  -webkit-transform: translateZ(1px) scale(1);
+          transform: translateZ(1px) scale(1);
 }
 
 .two section {

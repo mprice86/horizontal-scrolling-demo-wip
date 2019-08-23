@@ -193,7 +193,6 @@ sub {
 	line-height: normal;
 }
 
-
 .animate {
 	transition: ease opacity, ease transform;
 
@@ -251,8 +250,6 @@ sub {
 	}
 }
 
-
-
 main {
 	display: block;
 	width: 100%;
@@ -262,7 +259,6 @@ main {
 .wrapper {
 	display: inline-flex;
 	transition: transform .1s ease;
-
 
 	@media (max-width: $screen-desktop-small) {
 		flex-flow: column;
@@ -370,12 +366,31 @@ section {
 	left: 0;
 }
 
+main {
+	// perspective: 1px;
+}
+
+.image-container {
+	display: block;
+	position: relative;
+
+	img {
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
 .one {
-	z-index: 100;
+	z-index: 10;
+	transform: translateZ(0) scale(1);
 }
 
 .two {
-	z-index: 50;
+	z-index: 9;
+	transform: translateZ(1px) scale(1);
 
 	section {
 		min-width: 80vw;
