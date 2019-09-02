@@ -281,7 +281,7 @@ var parallaxPosition = (function () {
       position = 'right';
     }
 
-    positionElement(target, elements[i], position);
+    // positionElement(target, elements[i], position);
   }
 
   function positionElement(target, el, position) {
