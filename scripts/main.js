@@ -297,7 +297,6 @@ var parallaxPosition = (function () {
         el.setAttribute('style', 'left: ' + left + 'px; top: ' + top + 'px; transform: translate(0, -50%);');
     }
   }
-
 })();
 
 invertscroll.init(document.querySelectorAll('.scroll'));
