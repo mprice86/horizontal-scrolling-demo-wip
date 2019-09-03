@@ -9,7 +9,8 @@
 .text-massive,
 .text-large,
 .text-medium,
-.text-small {
+.text-small,
+.text-tiny {
 	margin: 0;
 
 	&.black {
@@ -21,7 +22,7 @@
 	}
 
 	&.grey {
-		color: $nbs-utility-grey-dark;
+		color: $nbs-utility-grey-dark; 
 	}
 
 	&.nbs-brand-secondary {

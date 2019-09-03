@@ -221,42 +221,48 @@ main {
 .text-massive,
 .text-large,
 .text-medium,
-.text-small {
+.text-small,
+.text-tiny {
   margin: 0;
 }
 
 .text-massive.black,
 .text-large.black,
 .text-medium.black,
-.text-small.black {
+.text-small.black,
+.text-tiny.black {
   color: #333;
 }
 
 .text-massive.white,
 .text-large.white,
 .text-medium.white,
-.text-small.white {
+.text-small.white,
+.text-tiny.white {
   color: #fff;
 }
 
 .text-massive.grey,
 .text-large.grey,
 .text-medium.grey,
-.text-small.grey {
+.text-small.grey,
+.text-tiny.grey {
   color: #888;
 }
 
 .text-massive.nbs-brand-secondary,
 .text-large.nbs-brand-secondary,
 .text-medium.nbs-brand-secondary,
-.text-small.nbs-brand-secondary {
+.text-small.nbs-brand-secondary,
+.text-tiny.nbs-brand-secondary {
   color: #592d5e;
 }
 
 .text-massive.nbs-cta-primary,
 .text-large.nbs-cta-primary,
 .text-medium.nbs-cta-primary,
-.text-small.nbs-cta-primary {
+.text-small.nbs-cta-primary,
+.text-tiny.nbs-cta-primary {
   color: #007d9e;
 }
 
@@ -324,7 +330,7 @@ main {
 }
 
 .front .screen {
-  min-width: 105vw;
+  min-width: 121vw;
 }
 
 .middle {
@@ -334,7 +340,7 @@ main {
 }
 
 .middle .screen {
-  min-width: 100vw;
+  min-width: 110vw;
 }
 
 .back {
@@ -344,7 +350,7 @@ main {
 }
 
 .back .screen {
-  min-width: 95vw;
+  min-width: 99vw;
 }
 
 .scroll {

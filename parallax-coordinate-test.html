@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>AnimeJS test</title>
+  <title>Parallax Coordinate Test</title>
   <link rel="stylesheet" href="https://use.typekit.net/vla2axi.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
   <link rel="stylesheet" href="./assets/css/main.css">
@@ -13,9 +13,41 @@
 
 <body>
   <main>
+    <!-- <div class="wrapper front scroll">
+      <section class="screen image-container">
+        <img data-attach="part-one" data-position="left" src="./assets/img/1-crane.PNG" alt=""
+          class="position bottom left js-animate animate opacity super-slow">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-two" data-position="left" src="./assets/img/1-skyline.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-three" data-position="left" src="./assets/img/3-computer.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-four" data-position="left" src="./assets/img/4-arms.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-five" data-position="left" src="./assets/img/5-desk.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-six" data-position="bottom" src="./assets/img/6-people.png" alt=""
+          class="position centre bottom js-animate animate opacity super-slow" para-coords="auto, auto, 0, 45">
+      </section>
+    </div> -->
+
     <div class="wrapper middle scroll">
       <section class="screen text-container">
-        <div id="part-one" class="text-content position centre right">
+        <div id="part-one" class="text-content position centre right" para-coords="50, 15, auto, auto">
           <p class="js-animate animate super-slow opacity slide-left text-medium black">
             Manufacturers
           </p>
@@ -31,7 +63,7 @@
           <p class="js-animate animate super-slow opacity slide-left text-large black margin-small">
             Win more orders
           </p>
-          <p class="js-animate animate super-slow opacity slide-left text-tiny black margin-small">
+          <p class="js-animate animate super-slow opacity slide-left text-tiny black">
             <a href="#watch">Watch the film</a>
             <a href="#see">See how it works</a>
           </p>
@@ -76,7 +108,7 @@
       </section>
 
       <section class="screen text-container">
-        <div id="part-six" class="text-content js-animate stagger-children position top">
+        <div id="part-six" class="text-content js-animate stagger-children position centre top" para-coords="10, auto, auto, 50">
           <p class="js-animate animate super-slow opacity slide-down text-medium margin-medium black">
             ...BIM objects in the most trusted BIM library in the world...</p>
           <p class="js-animate animate super-slow opacity slide-down text-tiny">
@@ -94,27 +126,27 @@
 
       <section class="screen image-container">
         <img data-attach="part-two" data-position="left" src="./assets/img/1-skyline.png" alt=""
-          class="position centre left js-animate animate opacity super-slow">
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
       </section>
 
       <section class="screen image-container">
         <img data-attach="part-three" data-position="left" src="./assets/img/3-computer.png" alt=""
-          class="position centre left js-animate animate opacity super-slow">
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
       </section>
 
       <section class="screen image-container">
         <img data-attach="part-four" data-position="left" src="./assets/img/4-arms.png" alt=""
-          class="position centre left js-animate animate opacity super-slow">
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
       </section>
 
       <section class="screen image-container">
         <img data-attach="part-five" data-position="left" src="./assets/img/5-desk.png" alt=""
-          class="position centre left js-animate animate opacity super-slow">
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
       </section>
 
       <section class="screen image-container">
         <img data-attach="part-six" data-position="bottom" src="./assets/img/6-people.png" alt=""
-          class="position centre bottom js-animate animate opacity super-slow">
+          class="position centre bottom js-animate animate opacity super-slow" para-coords="auto, auto, 0, 45">
       </section>
     </div>
   </main>

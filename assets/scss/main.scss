@@ -20,7 +20,7 @@
 	transform: translateZ(1px) scale(1);
 
 	.screen {
-		min-width: 105vw;
+		min-width: 121vw;
 	}
 }
 
@@ -29,7 +29,7 @@
 	transform: translateZ(0) scale(1);
 
 	.screen {
-		min-width: 100vw;
+		min-width: 110vw;
 	}
 }
 
@@ -38,7 +38,7 @@
 	transform: translateZ(-1px) scale(1);
 
 	.screen {
-		min-width: 95vw;
+		min-width: 99vw;
 	}
 }
 
@@ -140,5 +140,5 @@
 		&.centre {
 			transform: translate(0, -50%);
 		}
-	}
+	} 
 }
