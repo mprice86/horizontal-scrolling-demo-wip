@@ -1,0 +1,76 @@
+
+.text-content {
+	display: block;
+	max-width: $screen-tablet;
+	text-align: left;
+	text-transform: uppercase;
+}
+
+.text-massive,
+.text-large,
+.text-medium,
+.text-small {
+	margin: 0;
+
+	&.black {
+		color: $nbs-text-primary;
+	}
+
+	&.white {
+		color: $white;
+	}
+
+	&.grey {
+		color: $nbs-utility-grey-dark;
+	}
+
+	&.nbs-brand-secondary {
+		color: $nbs-brand-secondary;
+	}
+
+	&.nbs-cta-primary {
+		color: $nbs-cta-primary;
+	}
+}
+
+.text-massive {
+	font-size: 6vw;
+	font-weight: $bold;
+	line-height: 1em;
+}
+
+.text-large {
+	font-size: 4vw;
+	font-weight: $bold;
+	line-height: 1em;
+}
+
+.text-medium {
+	font-size: 3.5vw;
+	font-weight: $bold;
+	line-height: 1em;
+}
+
+.text-small {
+	font-size: 2vw;
+	font-weight: $bold;
+	line-height: 1em;
+}
+
+.text-tiny {
+	font-size: 1.25vw;
+	font-weight: $bold;
+	line-height: 1em;
+}
+
+.margin-large {
+	margin: 5vw 0;
+}
+
+.margin-medium {
+	margin: 4vw 0;
+}
+
+.margin-small {
+	margin: 2vw 0;
+}

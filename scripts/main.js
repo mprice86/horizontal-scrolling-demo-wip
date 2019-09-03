@@ -222,7 +222,7 @@ var invertscroll = (function () {
         deltaW = _elements[i].offsetWidth;
       }
       var pos = Math.floor(deltaW * scrollPercent) * -1;
-      _elements[i].setAttribute('style', 'left: ' + pos + 'px;');
+      _elements[i].setAttribute('style', 'transform: translate3d(' + pos + 'px, 0, 0);');
     }
   }
 

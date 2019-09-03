@@ -1,0 +1,61 @@
+
+// Basic Colours
+$white: #fff;
+$black: #000;
+
+// NBS brand identity
+$nbs-brand-primary: #fff;
+$nbs-brand-secondary: #592d5e;
+
+// NBS action colours
+$nbs-cta-primary: #007d9e;
+$nbs-cta-secondary: #cce5ec;
+$nbs-cta-disabled: #f5f5f5;
+
+// NBS additional colours
+$nbs-add-highlight: #fdcc0b;
+$nbs-add-success: #4bb45a;
+$nbs-add-warning: #fb8b02;
+$nbs-add-failure: #fc5753;
+
+// NBS text colours
+$nbs-text-primary: #333;
+$nbs-text-secondary: #226d7c;
+$nbs-text-disabled: #989898;
+
+// NBS greys
+$nbs-utility-grey-dark: #888;
+$nbs-utility-grey: #dbe0de;
+$nbs-utility-grey-80: #e2e5e4;
+$nbs-utility-grey-60: #e9eae9;
+$nbs-utility-grey-40: #eff0ef;
+$nbs-utility-grey-20: #f6f6f5;
+
+// Borders
+$nbs-border: 1px solid $nbs-utility-grey;
+$nbs-border-radius: 4px;
+
+// Shadows
+$nbs-box-shadow: 0 0 10px 2px fade-out($black, .85);
+$nbs-box-shadow-hover: 0 0 15px 2px fade-out($black, .75);
+
+// Screen sizes
+$screen-desktop: 1600px;
+$screen-desktop-small: 1100px;
+$screen-tablet: 800px;
+$screen-mobile: 500px;
+
+// Animation speeds
+$speed-very-fast: 0.1s;
+$speed-fast: 0.2s;
+$speed-normal: 0.3s;
+$speed-slow: 0.4s;
+$speed-very-slow: 0.5s;
+
+// Fonts
+$nbs-font: unquote('\'azo-sans-web\', Arial');
+$nbs-font-size: 16px;
+$nbs-line-height: 1.5em;
+$regular: 400;
+$medium: 500;
+$bold: 600;
