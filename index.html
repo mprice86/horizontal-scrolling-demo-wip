@@ -5,136 +5,153 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>AnimeJS test</title>
+  <title>Parallax Coordinate Test</title>
   <link rel="stylesheet" href="https://use.typekit.net/vla2axi.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
   <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 
 <body>
-
   <main>
-    <div class="background"></div>
-    <div class="wrapper scroll">
-      <section>
-        <div class="js-animate stagger-children text-content">
-          <p class="js-animate animate super-slow opacity slide-up text-large nbs-brand-secondary">
-            GETTING SPECIFIED
+    <!-- <div class="wrapper front scroll">
+      <section class="screen image-container">
+        <img data-attach="part-one" data-position="left" src="./assets/img/1-crane.PNG" alt=""
+          class="position bottom left js-animate animate opacity super-slow">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-two" data-position="left" src="./assets/img/1-skyline.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-three" data-position="left" src="./assets/img/3-computer.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-four" data-position="left" src="./assets/img/4-arms.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-five" data-position="left" src="./assets/img/5-desk.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-six" data-position="bottom" src="./assets/img/6-people.png" alt=""
+          class="position centre bottom js-animate animate opacity super-slow" para-coords="auto, auto, 0, 45">
+      </section>
+    </div> -->
+
+    <div class="wrapper middle scroll">
+      <section class="screen text-container">
+        <div id="part-one" class="text-content position centre right" para-coords="50, 15, auto, auto">
+          <p class="js-animate animate super-slow opacity slide-left text-medium black">
+            Manufacturers
           </p>
-          <p class="js-animate animate super-slow opacity slide-up text-massive nbs-cta-primary">ISN'T EASY</p>
-        </div>
-      </section>
-
-      <section>
-        <div class="text-content js-animate stagger-children">
-          <p class="js-animate animate super-slow opacity slide-down text-small nbs-cta-primary">Invest in a</p>
-          <p class="js-animate animate super-slow opacity slide-right text-massive margin-small nbs-brand-secondary">
-            PLATFORM</p>
-          <p class="js-animate animate super-slow opacity slide-up text-small nbs-cta-primary">
-            Proven to get your products in front of...
+          <p class="js-animate animate super-slow opacity slide-left text-medium black">
+            & distributers
+          </p>
+          <p class="js-animate animate super-slow opacity slide-left text-medium black">
+            of construction
+          </p>
+          <p class="js-animate animate super-slow opacity slide-left text-medium black">
+            products
+          </p>
+          <p class="js-animate animate super-slow opacity slide-left text-large black margin-small">
+            Win more orders
+          </p>
+          <p class="js-animate animate super-slow opacity slide-left text-tiny black">
+            <a href="#watch">Watch the film</a>
+            <a href="#see">See how it works</a>
           </p>
         </div>
       </section>
 
-      <section>
-        <div class="text-content js-animate stagger-children">
-          <p class="js-animate animate super-slow opacity slide-down text-massive nbs-brand-secondary">THE RIGHT PEOPLE
-          </p>
-          <p class="js-animate animate super-slow opacity slide-left text-small margin-large">AT</p>
-          <p class="js-animate animate super-slow opacity slide-up text-massive nbs-cta-primary">THE RIGHT TIME</p>
+      <section class="screen text-container">
+        <div id="part-two" class="text-content js-animate stagger-children position right">
+          <p class="js-animate animate super-slow opacity slide-left text-medium black">
+            Reach the right people without wasting money</p>
         </div>
       </section>
 
-      <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-      <section>
-        <div class="text-content js-animate stagger-children">
-          <p class="js-animate animate super-slow opacity slide-down text-massive nbs-brand-secondary">NBS</p>
-          <p class="js-animate animate super-slow opacity slide-left text-large margin-small nbs-cta-primary">
-            gets you exposure
-          </p>
-          <p class="js-animate animate super-slow opacity slide-right text-small grey margin-medium">At every stage of
-            the project
-            timeline
+      <section class="screen text-container">
+        <div id="part-three" class="text-content js-animate stagger-children position right">
+          <p class="js-animate animate super-slow opacity slide-left text-medium black">
+            The NBS platform backed by RIBA is an integrated set of tools
           </p>
         </div>
       </section>
 
-      <section>
-        <div class="text-content js-animate stagger-children">
-          <p class="js-animate animate super-slow opacity slide-down text-massive margin-medium nbs-brand-secondary">
-            RIBA
-            CPD
-            Providers
-            Network</p>
-          <p class="js-animate animate super-slow opacity slide-up text-small grey">Meet decision makers</p>
-          <p class="js-animate animate super-slow opacity slide-up text-small grey">Promote your products</p>
-        </div>
-      </section>
-
-      <section>
-        <div class="text-content js-animate stagger-children">
-          <p class="js-animate animate super-slow opacity slide-down text-massive margin-medium nbs-brand-secondary">
-            RIBA Product
-            Selector</p>
-          <p class="js-animate animate super-slow opacity slide-up text-small grey">The online directory for building
-            products</p>
-          <p class="js-animate animate super-slow opacity slide-up text-small grey">More than 90,000 users per month</p>
-        </div>
-      </section>
-
-      <section>
-        <div class="text-content js-animate stagger-children">
-          <p class="js-animate animate super-slow opacity slide-down text-massive margin-medium nbs-brand-secondary">NBS
-            Plus</p>
-          <p class="js-animate animate super-slow opacity slide-up text-small grey">
-            Your products available to specifiers at over 3,800 practices</p>
-        </div>
-      </section>
-
-      <section>
-        <div class="text-content js-animate stagger-children">
-          <p class="js-animate animate super-slow opacity slide-down text-massive margin-medium nbs-brand-secondary">NBS
-            National BIM
-            Library</p>
-          <p class="js-animate animate super-slow opacity slide-up text-small grey">The most trusted BIM object library
+      <section class="screen text-container">
+        <div id="part-four" class="text-content js-animate stagger-children position right">
+          <p class="js-animate animate super-slow opacity slide-left text-medium black">
+            From product discovery in RIBA CPD...
           </p>
-          <p class="js-animate animate super-slow opacity slide-up text-small grey">Thousands of product downloads</p>
+          <p class="js-animate animate super-slow opacity slide-left text-tiny">
+            <a href="#find">Find out how RIBA CPD connects you to new customers</a>
+          </p>
         </div>
       </section>
 
-      <section>
-        <div class="text-content js-animate stagger-children">
-          <p class="js-animate animate super-slow opacity slide-down text-medium grey">Your products in front of</p>
-          <p class="js-animate animate super-slow opacity slide-up text-massive nbs-brand-secondary margin-medium">
-            280,000 decision
-            makers</p>
-          <p class="js-animate animate super-slow opacity slide-up text-small grey">at all the top practices</p>
+      <section class="screen text-container">
+        <div id="part-five" class="text-content js-animate stagger-children position right">
+          <p class="js-animate animate super-slow opacity slide-left text-medium margin-medium black">
+            ...To product information in RIBA Product Selector
+          </p>
+          <p class="js-animate animate super-slow opacity slide-left text-tiny">
+            <a href="#find">Find out how RIBA Product Selector delivers stuff</a>
+          </p>
+        </div>
       </section>
 
-      <section>
-        <div class="text-content js-animate stagger-children">
-          <p class="js-animate animate super-slow opacity slide-right text-massive nbs-brand-secondary">Interested?</p>
-          <p class="js-animate animate super-slow opacity slide-left text-medium nbs-cta-primary">Get in touch</p>
+      <section class="screen text-container">
+        <div id="part-six" class="text-content js-animate stagger-children position centre top" para-coords="10, auto, auto, 50">
+          <p class="js-animate animate super-slow opacity slide-down text-medium margin-medium black">
+            ...BIM objects in the most trusted BIM library in the world...</p>
+          <p class="js-animate animate super-slow opacity slide-down text-tiny">
+            <a href="#find">Find out how NBS National BIM Library delivers stuff</a>
+          </p>
         </div>
+      </section>
+    </div>
+
+    <div class="wrapper back scroll">
+      <section class="screen image-container">
+        <img data-attach="part-one" data-position="left" src="./assets/img/1-crane.PNG" alt=""
+          class="position bottom left js-animate animate opacity super-slow">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-two" data-position="left" src="./assets/img/1-skyline.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-three" data-position="left" src="./assets/img/3-computer.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-four" data-position="left" src="./assets/img/4-arms.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-five" data-position="left" src="./assets/img/5-desk.png" alt=""
+          class="position centre left js-animate animate opacity super-slow" para-coords="50, auto, auto, 5">
+      </section>
+
+      <section class="screen image-container">
+        <img data-attach="part-six" data-position="bottom" src="./assets/img/6-people.png" alt=""
+          class="position centre bottom js-animate animate opacity super-slow" para-coords="auto, auto, 0, 45">
       </section>
     </div>
   </main>
 
-  <script src="./scripts/libs/anime.es.js"></script>
   <script type="module" src="./scripts/main.js"></script>
 </body>
 
 </html>
-
-
-<!-- <section class="pow-container js-animate animate super-slow opacity slide-up">
-  <article class="pow-stage"></article>
-  <article class="pow-stage"></article>
-  <article class="pow-stage"></article>
-  <article class="pow-stage"></article>
-  <article class="pow-stage"></article>
-  <article class="pow-stage"></article>
-  <article class="pow-stage"></article>
-  <article class="pow-stage"></article>
-</section> -->
